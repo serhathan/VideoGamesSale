@@ -1,11 +1,12 @@
 import pandas as pd
 from matplotlib.pylab import plt
 
-data = pd.read_csv("../Video Games Sales.csv")
+data = pd.read_csv("Video Games Sales.csv")
 
 df =data.drop("index", axis=1, inplace=False)
 df = df.dropna(axis=0)
 
+print(data.info())
 
 
 #Zaman İçinde Her Bölgede Toplam Satış
@@ -21,11 +22,6 @@ plt.ylabel("Satış (Milyon Dolar)")
 plt.title("Zaman İçinde Her Bölgede Toplam Satış")
 plt.legend()
 plt.show()
-
-
-
-
-
 
 
 #Yayıncıya Göre Satış
@@ -44,10 +40,6 @@ plt.show()
 
 
 
-
-
-
-
 #Oyun Türüne Göre Satış
 
 genreSales = df.groupby('Genre')['Global'].mean().sort_values(ascending=False).head(10)
@@ -63,11 +55,6 @@ plt.xticks(rotation=45)
 plt.show()
 
 
-
-
-
-
-
 #PieChart Bölgenin satış oranı
 salesByRegion = df[['North America', 'Europe', 'Japan', 'Rest of World']]
 
@@ -75,10 +62,6 @@ totalSales = salesByRegion.sum(axis=0)
 
 plt.pie(totalSales, labels=totalSales.index)
 plt.show()
-
-
-
-
 
 
 
@@ -96,5 +79,6 @@ plt.ylabel("Satış (Milyon Dolar)")
 plt.title("Action ve Adventure Türünün Yıla Göre Satış Kıyaslaması")
 plt.legend()
 plt.show()
+
 
 
